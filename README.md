@@ -1,5 +1,7 @@
 
-## System Requirements
+## Playable Music App with React, Tailwind, Redux, RapidAPI
+
+muzick.netlify.app/
 
 To get started with development, you need to install few tools
 
