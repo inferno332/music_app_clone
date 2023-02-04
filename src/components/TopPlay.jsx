@@ -15,12 +15,12 @@ const TopChartCard = ({ song, i, isPlaying, activeSong, handlePauseClick, handle
     <div className='w-full flex items-center hover:bg-[#4c426e] py-2 p-4 rounded-lg cursor-pointer mb-2'>
         <h3 className='font-bold text-white mr-3'>{i + 1}.</h3>
         <div className='flex-1 flex justify-between items-center'>
-            <img src={song?.images?.coverart} alt={song?.title} className='w-20 h-20 rounded-lg' />
+            <img src={song?.images ? song.images.coverart : `https://us.123rf.com/450wm/tkacchuk/tkacchuk2004/tkacchuk200400017/143745488-no-picture-icon-editable-line-vector-no-image-no-photo-available-or-no-picture-for-your-website-or-m.jpg`} alt={song?.title} className='w-20 h-20 rounded-lg' />
             <div className='flex-1 flex flex-col justify-center mx-3'>
                 <Link to={`/songs/${song.key}`}>
                     <p className='text-xl font-bold text-white'>{song?.title}</p>
                 </Link>
-                <Link to={`/songs/${song?.artists[0].adamid}`}>
+                <Link to={`/songs/${song?.artists ? song?.artists[0].adamid : ''}`}>
                     <p className='text-gray-300 mt-1'>{song?.subtitle}</p>
                 </Link>
             </div>
@@ -57,10 +57,7 @@ const TopPlay = () => {
     };
 
     return (
-        <div
-            ref={divRef}
-            className='xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col'
-        >
+        <div ref={divRef} className='xl:ml-6 ml-0 xl:mb-0 mb-6 flex-1 xl:max-w-[500px] max-w-full flex flex-col'>
             {/* Top Charts */}
             <div className='w-full flex flex-col'>
                 <div className='flex flex-row justify-between items-center'>
@@ -103,15 +100,15 @@ const TopPlay = () => {
                     modules={[FreeMode]}
                     className='mt-4'
                 >
-                    {topPlays?.map((song, i) => (
+                    {topPlays?.map((song) => (
                         <SwiperSlide
                             key={song.key}
                             style={{ width: '25%', height: 'auto' }}
                             className='shadow-lg rounded-full animate-slideright'
                         >
-                            <Link to={`/artists/${song?.artists[0].adamid}`}>
+                            <Link to={`/artists/${song?.artists ? song?.artists[0].adamid : ''}`}>
                                 <img
-                                    src={song?.images.background}
+                                    src={song?.images ? song?.images.background : `https://cdn-icons-png.flaticon.com/512/1946/1946429.png`}
                                     alt='name'
                                     className='rounded-full w-full object-cover'
                                 />
